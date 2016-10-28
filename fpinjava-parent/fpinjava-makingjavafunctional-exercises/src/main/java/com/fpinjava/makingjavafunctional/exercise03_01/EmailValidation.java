@@ -7,13 +7,24 @@ import com.fpinjava.common.Function;
 import com.fpinjava.makingjavafunctional.exercise03_01.Effect;
 import com.fpinjava.makingjavafunctional.exercise03_01.Result;
 
+import static com.fpinjava.makingjavafunctional.exercise03_01.Result.failure;
+import static com.fpinjava.makingjavafunctional.exercise03_01.Result.success;
+
 public class EmailValidation {
 
   static Pattern emailPattern =
       Pattern.compile("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
 
   static Function<String, Result<String>> emailChecker = s -> {
-    throw new RuntimeException("To be implemented");
+    if (s == null) {
+      return failure("email must not be null");
+    } else if (s.length() == 0) {
+      return failure("email must not be empty");
+    } else if (emailPattern.matcher(s).matches()) {
+      return success(s);
+    } else {
+      return failure("email " + s + " is invalid.");
+    }
   };
 
   public static void main(String... args) {
@@ -23,7 +34,7 @@ public class EmailValidation {
     emailChecker.apply("john.doe@acme.com").bind(success, failure);
   }
 
-  static Effect<String> success = null; // To be implemented
+  static Effect<String> success = s -> System.out.println("Mail sent to " + s);
   
-  static Effect<String> failure = null; // To be implemented
+  static Effect<String> failure = s -> System.err.println("Error message logged: " + s);
 }

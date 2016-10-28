@@ -16,7 +16,6 @@ import org.junit.Test;
 
 public class CaseTest {
 
-  /* Uncomment this these test once the exercise is solved
   @Test
   public void testMcaseSupplierOfBooleanSupplierOfResultOfT() {
     Case<Integer> c1 = Case.mcase(() -> true, () -> Result.success(4));
@@ -42,7 +41,7 @@ public class CaseTest {
     c1._2.get().bind(x -> success1.value = x, y -> failure1.value = y);
     assertEquals(Integer.valueOf(4), success1.value);
   }
-//*/
+
   @Test
   public void testMatch() {
     Pattern emailPattern =

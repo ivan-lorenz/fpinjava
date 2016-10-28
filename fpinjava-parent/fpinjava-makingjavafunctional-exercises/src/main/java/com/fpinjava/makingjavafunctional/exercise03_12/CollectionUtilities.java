@@ -93,6 +93,12 @@ public class CollectionUtilities {
   public static <T> List<T> unfold(T seed,
                                    Function<T, T> f,
                                    Function<T, Boolean> p) {
-    throw new RuntimeException("To be implemented");
+    List<T> result = new ArrayList<T>();
+    T temp = seed;
+    while(p.apply(temp)) {
+      result = append(result, temp);
+      temp = f.apply(temp);
+    }
+    return result;
   }
 }

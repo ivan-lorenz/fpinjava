@@ -104,7 +104,7 @@ public class CollectionUtilities {
   }
 
   public static List<Integer> range(int start, int end) {
-    throw new RuntimeException("To be implemented");
+    return unfold(start, x -> x + 1, x -> x < end);
   }
 
 }
